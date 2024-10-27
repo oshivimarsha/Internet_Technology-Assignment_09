@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Internet Technology - Assignment 09</title>
+
+    <style>
+        body {
+            background-color: black;
+            flex-direction: column;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .light {
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: white;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        hr{
+            width: 810px;
+            margin-left:40px;
+            margin-right: 40px;
+        }
+
+        #start_btn {
+            background-color: white;
+            width: 75px;
+            height: 30px;
+            margin-right: 10px;
+            margin-top: 20px;
+            color: green;
+            font-size: 20px;
+            font-weight: bold;
+
+        }
+
+        #stop_btn {
+            background-color: white;
+            width: 75px;
+            height: 30px;
+            margin-left: 10px;
+            margin-top: 20px;
+            color: red;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 25px;
+            font-weight: 600;
+            color: red;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript Knight Rider</h1>
+
+<hr>
+
+    <section class="light-panel">
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+    </section>
+
+<hr>
+
+    <section class="button-panel">
+        <button id="start_btn">Start</button>
+        <button id="stop_btn">Stop</button>
+    </section>
+
+    <script src="../Internet_Technology-Assignment_09/lib/jquery-3.7.1.min.js"></script>
+
+    <script>
+        const light_count = 6;
+        let current_light = -1;
+        let direction = "RIGHT"; // "RIGHT", "LEFT"
+        let interval_id = null;
+
+        updateLight = () => {
+            if (direction==="RIGHT") {
+
+                current_light++;
+                $(".light").css("background", "white")
+                $(".light").eq(current_light).css("background", "red")
+                $(".light").eq(current_light-1).css("background", "hotpink")
+
+                if (current_light === 5) {
+                    direction = "LEFT";
+                }
+
+            } else {
+
+                current_light--;
+                $(".light").css("background", "white")
+                $(".light").eq(current_light).css("background", "red")
+                $(".light").eq(current_light+1).css("background", "hotpink")
+
+                if (current_light === 0) {
+                    direction = "RIGHT";
+                }
+            }
+
+        }
+
+
+
+        $('#start_btn').on('click', function () {
+            interval_id = setInterval(updateLight, 100);
+        });
+
+        $('#stop_btn').on('click', function () {
+            clearInterval(interval_id);
+        });
+
+    </script>
+
+</body>
+</html>
